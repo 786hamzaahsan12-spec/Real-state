@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 :root {
@@ -22,15 +23,22 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
+  color-scheme: dark;
 }
 
 body {
+  margin: 0;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+}
+
+select option {
+  background-color: #0a141d;
+  color: #f5f7fa;
 }
 
 ::selection {
@@ -44,39 +52,53 @@ body {
   border-radius: 4px;
 }
 
-/* Slim dark scrollbar */
 * {
   scrollbar-width: thin;
   scrollbar-color: #2a3a48 #050b10;
 }
 
-/* Subtle gold gradient text helper */
-.gold-gradient-text {
-  background: linear-gradient(120deg, #f8d681 0%, #f5c451 45%, #d9a22b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Hide scrollbar utility for horizontal chip rows */
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
-/* Reduced motion: remove smooth scrolling and long CSS transitions */
+@layer components {
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-soft;
+  }
+
+  .btn-gold:hover {
+    box-shadow: 0 12px 32px -12px rgba(245, 196, 81, 0.7);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-semibold text-gold transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-line bg-ink px-4 py-3.5 text-sm text-fg outline-none transition-colors duration-300 hover:border-gold/40 focus:border-gold;
+  }
+
+  .field-input::placeholder {
+    color: #6f7c89;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }
