@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050b10;
+  --foreground: #f5f7fa;
+}
+
+@theme inline {
+  --color-ink: #050b10;
+  --color-navy: #0a141d;
+  --color-card: #0d1923;
+  --color-gold: #f5c451;
+  --color-gold-soft: #f8d681;
+  --color-fg: #f5f7fa;
+  --color-muted: #a5b0bc;
+  --color-line: #1c2a36;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #f5c451;
+  color: #050b10;
+}
+
+:focus-visible {
+  outline: 2px solid #f5c451;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Slim dark scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a3a48 #050b10;
+}
+
+/* Subtle gold gradient text helper */
+.gold-gradient-text {
+  background: linear-gradient(120deg, #f8d681 0%, #f5c451 45%, #d9a22b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hide scrollbar utility for horizontal chip rows */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reduced motion: remove smooth scrolling and long CSS transitions */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
